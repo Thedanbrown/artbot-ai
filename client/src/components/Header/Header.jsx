@@ -9,16 +9,29 @@ const Header = () => {
                     <img src='./artbot-ai-logo.png' alt='artbot logo' className='w-20 h-20 object-contain' />
                 </Link>
             </div>
-            <div className='flex flex-end'>
-                <Link to='/login-signup' className='font-inter font-small bg-[#279af1] text-white px-2 py-1 rounded-md'>
+            <div className='flex gap-1'>
+                {/* need to add is loggedin functionality to do conditional rendering in header */}
+                {/* {isLoggedIn 
+                ?   <Link to='/profile' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                        Profile
+                    </Link>
+                    <Link to='/' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                        Signout
+                    </Link>
+                : <Link to='/login-signup' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                Login/Signup
+            </Link>
+                } */}
+                <Link to='/login-signup' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
                     Login/Signup
                 </Link>
-                <Link to='/' className='font-inter font-small bg-[#279af1] text-white px-2 py-1 rounded-md'>
-                    Signout
-                </Link>
-                <Link to='/profile' className='font-inter font-small bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                
+                <Link to='/profile' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
                     Profile
                 </Link>
+                <Link to='/' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                        Signout
+                    </Link>
             </div>
             
         </header>
