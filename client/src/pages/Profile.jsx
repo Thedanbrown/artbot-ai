@@ -24,7 +24,7 @@ const Profile = () => {
                 <h2 className='font-extrabold text-[#253031] text-[32px]'>Create</h2>
                 <p className='mt-2 text-[#279af1] text-[16px]'>Create stunning images with the DALL-E AI and share them with the community</p>
             </div>
-            <div className='flex justify-around align-center px-8 py-8 sm:flex-col md:flex-col'>
+            <div className='flex flex-col justify-around align-center px-8 py-8 sm:flex-row'>
                 <form className='mt-16 max-w-3xl' onSubmit={handleSubmit}>
                     <div className='flex flex-col gap-5'>
                         <FormField 
@@ -38,7 +38,7 @@ const Profile = () => {
                         handleSurpriseMe={handleSurpriseMe}
                         />
                     </div>
-                    <div className='flex justify-around align-center'>
+                    <div className='flex justify-center align-center gap-5'>
                         <div className='mt-5 flex gap-5'>
                             <button type='button' onClick={generateImage} className='font-semibold text-xs bg-[#49beaa] text-white py-2.5 px-5 rounded-[5px] w-full sm:w-auto text-center'>
                                 {generatingImg ? 'Generating' : 'Generate'}
