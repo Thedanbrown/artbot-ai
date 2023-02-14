@@ -9,7 +9,7 @@ const orderSchema = new Schema({
   },
   purchaseDate: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   images: [
     {

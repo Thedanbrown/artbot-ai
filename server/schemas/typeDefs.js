@@ -5,7 +5,7 @@ const typeDefs = gql`
   type Image {
     _id: ID
     description: String
-    createdAt: Date
+    createdAt: String
     jpeg: String
     price: Float
   }
