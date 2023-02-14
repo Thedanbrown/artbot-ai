@@ -1,5 +1,7 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model, mongoose } = require("mongoose");
+
 const bcrypt = require("bcrypt");
+const Order = require('./Order')
 
 const userSchema = new Schema({
   userId: {
@@ -31,14 +33,14 @@ const userSchema = new Schema({
     minlength: 8,
   },
   dob: {
-    type: Date,
+    type: String,
     required: true,
     match: [
       /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/,
       "You must be 18 or older to sign up",
     ],
   },
-  orders: [Orders.schema],
+  orders: [Order.schema],
 });
 
 userSchema.virtual("orderCount").get(function () {

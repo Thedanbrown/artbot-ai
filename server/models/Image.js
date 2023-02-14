@@ -12,7 +12,7 @@ const imageSchema = new Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    default: Date.now(),
   },
   jpeg: {
     type: String,
