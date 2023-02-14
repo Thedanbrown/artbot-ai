@@ -1,6 +1,6 @@
 import Checkout from "./Checkout";
 import Home from "./Home";
-import LoginSignup from "./LoginSignup";
+import LoginSignup from "./LoginSignup/LoginSignup";
 import Profile from "./Profile";
 import UpdateInfo from "./UpdateInfo";
 
