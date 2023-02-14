@@ -1,8 +1,6 @@
 const { Schema, model } = require('mongoose');
 
 const imageSchema = new Schema({
-i
-
     // this comes from search terms/prompt
     description: {
         type: String,
