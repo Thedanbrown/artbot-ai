@@ -1,8 +1,3 @@
-const { User, Image, Order } = require("../models");
-const { signToken } = require("../utils/auth");
-const stripe = require("stripe")(
-  "pk_test_51MZlnuFf744gHokpXhLvKw4lfR9IxjoyNOwj9DGOC76lpxKEuOnYG4U8Mp2GHqd35IBPX0ZPyuqCuQez39STMxMF004EucV16s"
-);
 
 const resolvers = {
   Query: {
@@ -25,3 +20,4 @@ const resolvers = {
     },
   },
 };
+
