@@ -246,6 +246,29 @@ body {
   	border-radius: 2px;
 }
 
+.input-block-signup {
+	margin-bottom: 5px;
+}
+
+.input-block-signup label {
+	font-size: 12px;
+  	color: #a1b4b4;
+}
+
+.input-block-signup input {
+	display: block;
+	width: 100%;
+	margin-top: 4px;
+	padding-right: 15px;
+	padding-left: 15px;
+	font-size: 14px;
+	line-height: 30px;
+	color: #3b4465;
+  	background: #eef9fe;
+  	border: 1px solid #cddbef;
+  	border-radius: 2px;
+}
+
 .form [type='submit'] {
 	opacity: 0;
 	display: block;
