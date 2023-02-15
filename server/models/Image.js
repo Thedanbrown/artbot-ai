@@ -1,21 +1,23 @@
 const { Schema, model } = require("mongoose");
 
 const imageSchema = new Schema({
-  // this comes from search terms/prompt
+
   imageId: {
     type: Schema.Types.ObjectId,
     default: () => new Types.ObjectId(),
   },
-  description: {
+  prompt: {
     type: String,
     required: true,
   },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    imutable: true,
+    default: Date.now,
   },
-  jpeg: {
+  url: {
     type: String,
+    required: true,
   },
   price: {
     type: Number,
@@ -27,3 +29,7 @@ const imageSchema = new Schema({
 const Image = model("Image", imageSchema);
 
 module.exports = Image;
+
+
+// Do I want Image to just be a schema not model?
+//do I need to add toJSON getters: true?
