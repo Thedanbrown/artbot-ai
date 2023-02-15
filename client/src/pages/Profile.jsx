@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { Loader, ImageCard, FormField } from "../components";
 import { getRandomPrompt } from "../utils";
-import { generateImage } from "../utils/API";
+import { generateImage } from "../utils/API"
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [form, setForm] = useState({ name: "", prompt: "", photo: "" });
   const [generatingImg, setGeneratingImg] = useState(false);
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('You clicked submit.');
+  };
 
-  const handleChange = (e) => {};
+  const handleChange  = (event) => {
+    const { name, value } = event.target;
+
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
 
   const handleSurpriseMe = () => {};
 
