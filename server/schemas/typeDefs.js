@@ -40,12 +40,20 @@ const typeDefs = gql`
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
   }
-
+  input ImageInfo {
+    imageId: String
+    prompt: String
+    createdAt: String
+    url: String
+    price: Float
+  }
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
     addOrder(images: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     login(email: String!, password: String!): Auth
+    saveImage(input: ImageInfo): Order
+    removeImage(imageId: String!): Order
   }
 `;
 

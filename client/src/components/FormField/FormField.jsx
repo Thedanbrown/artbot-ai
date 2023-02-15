@@ -4,7 +4,7 @@ const FormField = ({ LabelName, type, name, placeholder, value, handleChange, is
     return (
         <div>
             <div className='flex items-center gap-2 mb-2'>
-            <input type={type} id={name} placeholder={placeholder} value={value} onChange={handleChange} required 
+            <input type={type} id={name} name={name} placeholder={placeholder} value={value} onChange={handleChange} required 
                 className='bg-[#f7f7ff] border border-[#279af1] text-gray-900 text-sm rounded-lg focus:ring-[#279af1] focus:border-[#49beaa] outline-none block w-full p-3' />
                 <label htmlFor={name} className='block text-sm font-medium text-gray-900'>{LabelName}</label>
                 {isSurpriseMe && (

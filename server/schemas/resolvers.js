@@ -122,6 +122,30 @@ const resolvers = {
 
       return { token, user };
     },
+    saveImage: async (parent, { input }, context) => {
+      console.log("MADE IT in resolvers");
+      // console.log(context)
+      if (context.user) {
+        console.log("THIS IS USER",context.user)
+        return await Order.findOneAndUpdate(
+          { _id: context.user.oders._id },
+          { $push: { images: input } },
+          { new: true, runValidators: true }
+        );
+      }
+      throw new AuthenticationError("Need to be logged in");
+    },
+    removeImage: async (parent, { imageId }, context) => {
+      console.log("MADE IT in resolvers");
+      if (context.user) {
+        return await Order.findOneAndUpdate(
+          { _id: context.user.orders._id },
+          { $pull: { images: { imageId } } },
+          { new: true }
+        );
+      }
+      throw new AuthenticationError("Need to be logged in");
+    },
   },
 };
 
