@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Loader, ImageCard, FormField, Carousel } from "../components";
 import { getRandomPrompt } from "../utils";
-import { generateImage } from "../utils/API";
+// import { generateImage } from "../../../server/utils/API";
+import { useLazyQuery } from "@apollo/client";
+import { QUERY_OPEN_AI_API } from "../utils/queries";
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [form, setForm] = useState({ name: "", prompt: "", photo: "" });
   const [generatingImg, setGeneratingImg] = useState(false);
+  const [callOpenAiApi, { error, data }] = useLazyQuery(QUERY_OPEN_AI_API, {
+    variables: { prompt: form.prompt },
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,6 +28,12 @@ const Profile = () => {
   };
 
   const handleSurpriseMe = () => {};
+
+  const generateImage = () => {
+    // Call Backend Proxy
+    // Backend Proxy will return URL
+    callOpenAiApi();
+  };
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -68,9 +79,9 @@ const Profile = () => {
           </div>
         </form>
         <div className="relative bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#4392f1]-500 focus:border-[#4392f1]-500 w-64 p-3 h-64 flex justify-center items-center">
-          {form.photo ? (
+          {data?.openAiAPIUrl?.url ? (
             <img
-              src={form.photo}
+              src={data?.openAiAPIUrl?.url}
               alt={form.prompt}
               className="w-full h-full object-contain"
             />

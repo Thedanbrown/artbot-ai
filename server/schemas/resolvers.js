@@ -1,12 +1,17 @@
-const { AuthenticationError } = require('apollo-server-express');
+const { AuthenticationError } = require("apollo-server-express");
 const { User, Image, Order } = require("../models");
 const { signToken } = require("../utils/auth");
 const stripe = require("stripe")(
   "pk_test_51MZlnuFf744gHokpXhLvKw4lfR9IxjoyNOwj9DGOC76lpxKEuOnYG4U8Mp2GHqd35IBPX0ZPyuqCuQez39STMxMF004EucV16s"
 );
+const { generateImage } = require("../utils/API");
 
 const resolvers = {
   Query: {
+    openAiAPIUrl: async (parent, { prompt }) => {
+      const url = await generateImage(prompt);
+      return { url };
+    },
     images: async () => {
       return await Image.find();
     },
@@ -124,10 +129,10 @@ const resolvers = {
     },
     saveImage: async (parent, { input }, context) => {
       console.log("MADE IT in resolvers");
-      // console.log(context)
+      console.log(context);
       if (context.user) {
-        console.log("THIS IS USER",context.user)
-        return await Order.findOneAndUpdate(
+        console.log("THIS IS USER", context.user);
+        return await Image.findOneAndUpdate(
           { _id: context.user.oders._id },
           { $push: { images: input } },
           { new: true, runValidators: true }

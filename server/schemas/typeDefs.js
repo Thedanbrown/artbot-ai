@@ -1,7 +1,6 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-
   type Image {
     _id: ID
     description: String
@@ -33,13 +32,19 @@ const typeDefs = gql`
     user: User
   }
 
+  type OpenAiAPIUrl {
+    url: String
+  }
+
   type Query {
     images: [Image]
     image(_id: ID!): [Image]
     user: User
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
+    openAiAPIUrl(prompt: String!): OpenAiAPIUrl
   }
+
   input ImageInfo {
     imageId: String
     prompt: String
@@ -47,10 +52,21 @@ const typeDefs = gql`
     url: String
     price: Float
   }
+
   type Mutation {
-    addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
+    addUser(
+      firstName: String!
+      lastName: String!
+      email: String!
+      password: String!
+    ): Auth
     addOrder(images: [ID]!): Order
-    updateUser(firstName: String, lastName: String, email: String, password: String): User
+    updateUser(
+      firstName: String
+      lastName: String
+      email: String
+      password: String
+    ): User
     login(email: String!, password: String!): Auth
     saveImage(input: ImageInfo): Order
     removeImage(imageId: String!): Order
