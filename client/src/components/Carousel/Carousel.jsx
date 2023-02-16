@@ -8,14 +8,15 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import SwiperCore, { Navigation } from "swiper";
+
+import SwiperCore, { Navigation, EffectCoverflow } from "swiper";
 
 
 import image1 from "./image-1.jpg";
 import image2 from "./image-2.jpg";
 import image3 from "./image-3.jpg";
 import image4 from "./image-4.jpg";
-import image5 from "./image-5.jpg";
+import image5 from "./image-5.jpg"; 
 import image6 from "./image-6.jpg";
 import image7 from "./image-7.jpg";
 
@@ -28,9 +29,9 @@ const Carousel = () => {
         <Swiper spaceBetween={10} slidesPerView={3} loop navigation={{
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
-          }}>
-          <div className="swiper-button-next" />
-          <div className="swiper-button-prev" />
+            }}>
+            <div className="swiper-button-next" />
+            <div className="swiper-button-prev" />
             {slides.map((slide) => (
                 <SwiperSlide>
                 <img src={slide} />

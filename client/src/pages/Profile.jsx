@@ -27,11 +27,15 @@ const Profile = () => {
     });
   };
 
-  const handleSurpriseMe = () => {};
+  const handleSurpriseMe = () => {
+    const randomPrompt = getRandomPrompt(form.prompt)
+    setForm({...form, prompt: randomPrompt})
+  };
 
   const generateImage = () => {
     // Call Backend Proxy
     // Backend Proxy will return URL
+    setGeneratingImg(true);
     callOpenAiApi();
   };
 

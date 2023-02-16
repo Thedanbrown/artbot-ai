@@ -11,7 +11,7 @@ const Header = () => {
                 
             </div>
             <div className='flex'>
-            <p className='flex align-center justify-center ml-20'>Welcome USERNAME</p>
+            <p className='flex align-center justify-center text-[#4392f1]'>Welcome USERNAME</p>
             </div>
             <div className='flex gap-1'>
                 {/* need to add is loggedin functionality to do conditional rendering in header */}
@@ -35,6 +35,12 @@ const Header = () => {
                 </Link>
                 <Link to='/' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
                         Signout
+                    </Link>
+                    <Link to='checkout' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                        Checkout
+                    </Link>
+                    <Link to='/update' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                        update Info
                     </Link>
             </div>
             
