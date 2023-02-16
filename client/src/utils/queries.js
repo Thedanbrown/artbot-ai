@@ -20,9 +20,41 @@ export const QUERY_SINGLE_IMAGE = gql`
   }
 `;
 
-// export const QUERY_IMAGES = gql``;
+export const QUERY_IMAGES = gql`
+query getImages($userEmail: String!) {
+    images(userEmail: $userEmail) {
+      _id
+      createdAt
+      prompt
+      price
+      url
+    }
+  }`;
 
 
-// export const QUERY_ME = gql``;
+export const QUERY_ME = gql`
+query getMe {
+    me {
+      _id
+      email
+      firstName
+      images {
+        _id
+        url
+        price
+        createdAt
+      }
+      orders {
+        _id
+        purchaseDate
+        images {
+          _id
+          url
+          createdAt
+        }
+      }
+    }
+  }
+`;
 
 
