@@ -2,10 +2,14 @@ import React from 'react'
 import './carousel.css'
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel as ReactCarousel } from "react-responsive-carousel";
+// import { Carousel as ReactCarousel } from "react-responsive-carousel";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import "swiper/css/navigation";
+
+import SwiperCore, { Navigation } from "swiper";
+
 
 import image1 from "./image-1.jpg";
 import image2 from "./image-2.jpg";
@@ -15,11 +19,18 @@ import image5 from "./image-5.jpg";
 import image6 from "./image-6.jpg";
 import image7 from "./image-7.jpg";
 
-const slides = [image1, image2, image3, image4, image6, image7];
+SwiperCore.use([Navigation]);
+
+const slides = [image1, image2, image3, image4, image5, image6, image7];
 
 const Carousel = () => {
     return (
-        <Swiper spaceBetween={10} slidesPerView={3} loop>
+        <Swiper spaceBetween={10} slidesPerView={3} loop navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }}>
+          <div className="swiper-button-next" />
+          <div className="swiper-button-prev" />
             {slides.map((slide) => (
                 <SwiperSlide>
                 <img src={slide} />
