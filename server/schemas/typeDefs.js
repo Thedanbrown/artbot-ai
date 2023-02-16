@@ -47,14 +47,6 @@ const typeDefs = gql`
     me: User
   }
 
-  input ImageInfo {
-  
-    prompt: String
-
-    url: String
-    price: Float
-  }
-
   type Mutation {
     addUser(
       firstName: String!
