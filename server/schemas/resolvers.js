@@ -12,12 +12,13 @@ const resolvers = {
       const url = await generateImage(prompt);
       return { url };
     },
-    images: async () => {
-      return await Image.find();
+    images: async (parent, { userEmail }) => {
+      const params = userEmail ? { userEmail } : {};
+      return Image.find(params).sort({ createdAt: -1 });
     },
 
-    image: async (parent, { _id }) => {
-      return await Image.findById(_id).populate("order");
+    image: async (parent, { imageId }) => {
+      return Image.findOne({ _id: imageId }).populate("order");
     },
     user: async (parent, args, context) => {
       if (context.user) {
@@ -79,6 +80,14 @@ const resolvers = {
 
       return { session: session.id };
     },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id })
+          .populate("orders")
+          .populate("images");
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -127,27 +136,35 @@ const resolvers = {
 
       return { token, user };
     },
-    saveImage: async (parent, { input }, context) => {
+    saveImage: async (parent, { prompt, url }, context) => {
       console.log("MADE IT in resolvers");
-      console.log(context);
+
       if (context.user) {
         console.log("THIS IS USER", context.user);
-        return await Image.findOneAndUpdate(
-          { _id: context.user.oders._id },
-          { $push: { images: input } },
-          { new: true, runValidators: true }
+        const image = await Image.create({ prompt, url });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { images: image._id } }
         );
+        console.log(image);
+        return image;
       }
       throw new AuthenticationError("Need to be logged in");
     },
     removeImage: async (parent, { imageId }, context) => {
       console.log("MADE IT in resolvers");
       if (context.user) {
-        return await Order.findOneAndUpdate(
-          { _id: context.user.orders._id },
-          { $pull: { images: { imageId } } },
-          { new: true }
+        const image = await Image.findOneAndDelete({
+          _id: imageId,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { images: image._id } }
         );
+
+        return image;
       }
       throw new AuthenticationError("Need to be logged in");
     },
