@@ -3,9 +3,9 @@ const { gql } = require("apollo-server-express");
 const typeDefs = gql`
   type Image {
     _id: ID
-    description: String
+    prompt: String
     createdAt: String
-    jpeg: String
+    url: String
     price: Float
   }
 
@@ -21,6 +21,7 @@ const typeDefs = gql`
     lastName: String
     email: String
     orders: [Order]
+    images: [Image]
   }
 
   type Checkout {
@@ -37,18 +38,19 @@ const typeDefs = gql`
   }
 
   type Query {
-    images: [Image]
-    image(_id: ID!): [Image]
+    images(userEmail: String!): [Image]
+    image(imageId: ID!): Image
     user: User
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
     openAiAPIUrl(prompt: String!): OpenAiAPIUrl
+    me: User
   }
 
   input ImageInfo {
-    imageId: String
+  
     prompt: String
-    createdAt: String
+
     url: String
     price: Float
   }
@@ -68,8 +70,8 @@ const typeDefs = gql`
       password: String
     ): User
     login(email: String!, password: String!): Auth
-    saveImage(input: ImageInfo): Order
-    removeImage(imageId: String!): Order
+    saveImage(prompt: String!, url: String!): Image
+    removeImage(imageId: ID!): Image
   }
 `;
 
