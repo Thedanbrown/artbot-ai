@@ -20,9 +20,9 @@ export const QUERY_SINGLE_IMAGE = gql`
   }
 `;
 
-export const QUERY_IMAGES = gql``;
+// export const QUERY_IMAGES = gql``;
 
 
-export const QUERY_ME = gql``;
+// export const QUERY_ME = gql``;
 
 
