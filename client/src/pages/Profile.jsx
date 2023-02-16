@@ -25,7 +25,7 @@ const Profile = () => {
   const handleSurpriseMe = () => {};
 
   return (
-    <section className="max-w-7xl" mx-auto>
+    <section className="max-w-7xl mx-auto">
       <div className="text-center">
         <h2 className="font-extrabold text-[#253031] text-[32px]">Create</h2>
         <p className="mt-2 text-[#279af1] text-[16px]">
@@ -40,7 +40,7 @@ const Profile = () => {
               LabelName=""
               type="text"
               name="prompt"
-              placeholder="what should we create"
+              placeholder="what should we create?"
               value={form.prompt}
               handleChange={handleChange}
               isSurpriseMe
