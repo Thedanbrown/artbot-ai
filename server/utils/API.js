@@ -1,10 +1,10 @@
-import { Configuration, OpenAIApi } from "openai";
+const { Configuration, OpenAIApi } = require("openai");
+require("dotenv").config();
 
-export const generateImage = async (prompt) => {
+const generateImage = async (prompt) => {
   console.log("MADE IT in API.js", prompt);
   const configuration = new Configuration({
-    // apiKey: `${process.env.REACT_APP_OPENAI_API_KEY}`,
-    apiKey: "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",
+    apiKey: process.env.OPENAI_API_KEY,
   });
 
   console.log(prompt);
@@ -17,10 +17,15 @@ export const generateImage = async (prompt) => {
       size: "1024x1024",
       // response_format: "b64_json",
     });
-    console.log(aiResponse);
+    console.log(aiResponse.data.error);
     const imageUrl = aiResponse.data.data[0].url;
     console.log(imageUrl);
+    return imageUrl;
   } catch (error) {
-    console.error(error);
+    console.error("error", error);
   }
+};
+
+module.exports = {
+  generateImage,
 };
