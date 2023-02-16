@@ -67,7 +67,7 @@ const Profile = () => {
             </div>
           </div>
         </form>
-        <div className="relative bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#4392f1]-500 focus:border-[#4392f1]-500 w-64 p-3 h-64 flex justify-center items=center">
+        <div className="relative bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#4392f1]-500 focus:border-[#4392f1]-500 w-64 p-3 h-64 flex justify-center items-center">
           {form.photo ? (
             <img
               src={form.photo}
