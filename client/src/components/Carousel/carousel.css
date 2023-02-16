@@ -2,12 +2,6 @@
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  padding-left: 10px;
-  background: #eaedf0;
-}
-
 img {
   height: 30vw;
   width: 30vw;
@@ -28,7 +22,7 @@ img {
   translate: -50% 0;
   width: 800vw;
   height: 800vw;
-  background: #eaedf0;
+  background: #f7f7ff;
   border-radius: 50%;
 }
 
