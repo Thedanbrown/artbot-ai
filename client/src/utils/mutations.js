@@ -75,16 +75,16 @@ export const REMOVE_IMAGE = gql`
 `;
 
 export const ADD_ORDER = gql`
-mutation addOrder($purchaseDate: String!, $images: [ID]!) {
-  addOrder(images: $images) {
-    purchaseDate
-    images {
-      _id
-      createdAt
-      price
-      prompt
-      url
-        }
+  mutation addOrder($purchaseDate: String!, $images: [ID]!) {
+    addOrder(images: $images) {
+      purchaseDate
+      images {
+        _id
+        createdAt
+        price
+        prompt
+        url
       }
     }
+  }
 `;

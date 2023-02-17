@@ -32,7 +32,7 @@ const userSchema = new Schema(
     },
     dob: {
       type: String,
-      required: true,
+      // required: true,
       match: [
         /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/,
         "You must be 18 or older to sign up",
