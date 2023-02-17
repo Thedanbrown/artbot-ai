@@ -53,6 +53,7 @@ const typeDefs = gql`
       lastName: String!
       email: String!
       password: String!
+      dob: String!
     ): Auth
     addOrder(images: [ID]!): Order
     updateUser(
@@ -60,6 +61,7 @@ const typeDefs = gql`
       lastName: String
       email: String
       password: String
+      dob: String
     ): User
     login(email: String!, password: String!): Auth
     saveImage(prompt: String!, url: String!): Image
