@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Loader, ImageCard, FormField, Carousel } from "../components";
 import { getRandomPrompt } from "../utils";
 // import { generateImage } from "../../../server/utils/API";
@@ -9,8 +9,8 @@ const Profile = () => {
   const [searchText, setSearchText] = useState("");
   const [form, setForm] = useState({ name: "", prompt: "", photo: "" });
   const [generatingImg, setGeneratingImg] = useState(false);
-  const [callOpenAiApi, { error, data }] = useLazyQuery(QUERY_OPEN_AI_API, {
-    variables: { prompt: form.prompt },
+  const [callOpenAiApi, { error, data, loading: isApiLoading }] = useLazyQuery(QUERY_OPEN_AI_API, {
+    fetchPolicy: 'network-only'
   });
 
   const handleSubmit = (e) => {
@@ -35,8 +35,11 @@ const Profile = () => {
   const generateImage = () => {
     // Call Backend Proxy
     // Backend Proxy will return URL
-    setGeneratingImg(true);
-    callOpenAiApi();
+    console.log('click')
+    //setGeneratingImg(true);
+    callOpenAiApi( {
+      variables: { prompt: form.prompt },
+    });
   }
 
   return (
@@ -66,10 +69,10 @@ const Profile = () => {
             <div className="mt-5 flex gap-5">
               <button
                 type="button"
-                onClick={() => generateImage(form.prompt)}
+                onClick={() => generateImage()}
                 className="font-semibold text-xs bg-[#49beaa] text-white py-2.5 px-5 rounded-[5px] w-full sm:w-auto text-center"
               >
-                {generatingImg ? "Generating" : "Generate"}
+                {isApiLoading ? "Generating" : "Generate"}
               </button>
             </div>
             <div className="mt-5">
@@ -91,12 +94,12 @@ const Profile = () => {
             />
           ) : (
             <img
-              src="/preview.png"
+              src="/artbot-ai-logo-sans-text.png"
               alt="preview"
               className="w-9/12 h-9/12 object-contain opacity-40"
             />
           )}
-          {generatingImg && (
+          {isApiLoading && (
             <div className="absolute inset-0 z-0 flex justify-center items-center bg-[rgba(0,0,0,0.5)] rounded-lg">
               <Loader />
             </div>
