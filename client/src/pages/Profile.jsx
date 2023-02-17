@@ -37,7 +37,7 @@ const Profile = () => {
     // Backend Proxy will return URL
     setGeneratingImg(true);
     callOpenAiApi();
-  };
+  }
 
   return (
     <section className="max-w-7xl mx-auto">
