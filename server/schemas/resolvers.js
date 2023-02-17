@@ -22,10 +22,7 @@ const resolvers = {
     },
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          populate: "users.orders",
-          populate: "order",
-        });
+        const user = await User.findById(context.user._id).populate("orders");
 
         user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
@@ -35,10 +32,7 @@ const resolvers = {
     },
     order: async (parent, { _id }, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          populate: "users.orders",
-          populate: "order",
-        });
+        const user = await User.findById(context.user._id).populate("orders");
 
         return user.orders.id(_id);
       }
@@ -56,7 +50,7 @@ const resolvers = {
         const image = await stripe.images.create({
           id: images[i]._id,
           description: images[i].description,
-          jpeg: [`PLACEHOLDER FOR AI IMAGE FILE`],
+          url: order[i].url,
         });
 
         const price = await stripe.prices.create({
