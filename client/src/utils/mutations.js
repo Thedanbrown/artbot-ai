@@ -1,9 +1,20 @@
-import { gql } from '@apollo/client';
-
+import { gql } from "@apollo/client";
 
 export const ADD_USER = gql`
-mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $dob: String!) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, dob: $dob) {
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+    $dob: String!
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+      dob: $dob
+    ) {
       token
       user {
         _id
@@ -16,7 +27,7 @@ mutation addUser($firstName: String!, $lastName: String!, $email: String!, $pass
 `;
 
 export const LOGIN_USER = gql`
-mutation loginUser($email: String!, $password: String!) {
+  mutation loginUser($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
       user {
@@ -42,7 +53,7 @@ mutation loginUser($email: String!, $password: String!) {
 `;
 
 export const SAVE_IMAGE = gql`
-mutation saveImage($prompt: String!, $url: String!) {
+  mutation saveImage($prompt: String!, $url: String!) {
     saveImage(prompt: $prompt, url: $url) {
       _id
       createdAt
@@ -54,7 +65,7 @@ mutation saveImage($prompt: String!, $url: String!) {
 `;
 
 export const REMOVE_IMAGE = gql`
-mutation removeImage($imageId: ID!) {
+  mutation removeImage($imageId: ID!) {
     removeImage(imageId: $imageId) {
       _id
       prompt
@@ -63,3 +74,17 @@ mutation removeImage($imageId: ID!) {
   }
 `;
 
+export const ADD_ORDER = gql`
+mutation addOrder($purchaseDate: String!, $images: [ID]!) {
+  addOrder(images: $images) {
+    purchaseDate
+    images {
+      _id
+      createdAt
+      price
+      prompt
+      url
+        }
+      }
+    }
+`;

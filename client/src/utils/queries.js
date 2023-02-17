@@ -58,3 +58,24 @@ query getMe {
 `;
 
 
+export const QUERY_ORDER = gql`
+query  addOrder{
+    purchaseDate
+    images {
+      _id
+      createdAt
+      price
+      prompt
+      url
+        }
+      }
+    }
+`;
+
+export const QUERY_CHECKOUT = gql`
+  query getCheckout($products: [ID]!) {
+    checkout(products: $products) {
+      session
+    }
+  }
+`;
