@@ -67,7 +67,6 @@ query  addOrder{
       price
       prompt
       url
-        }
       }
     }
 `;

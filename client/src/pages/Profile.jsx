@@ -1,21 +1,44 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Loader, ImageCard, FormField, Carousel } from "../components";
 import { getRandomPrompt } from "../utils";
-// import { generateImage } from "../../../server/utils/API";
-import { useLazyQuery } from "@apollo/client";
+import Auth from "../utils/auth";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { QUERY_OPEN_AI_API } from "../utils/queries";
+import { SAVE_IMAGE } from "../utils/mutations";
+
+
+
+
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [form, setForm] = useState({ name: "", prompt: "", photo: "" });
   const [generatingImg, setGeneratingImg] = useState(false);
-  const [callOpenAiApi, { error, data, loading: isApiLoading }] = useLazyQuery(QUERY_OPEN_AI_API, {
+  const [callOpenAiApi, { error: callApiErr, data, loading: isApiLoading }] = useLazyQuery(QUERY_OPEN_AI_API, {
     fetchPolicy: 'network-only'
   });
-
-  const handleSubmit = (e) => {
+  const [saveImage, {error: saveImageErr, data: saveImageData}] = useMutation(SAVE_IMAGE);
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("You clicked submit.");
+    console.log("You clicked save.");
+    console.log('save btn', form.prompt, data?.openAiAPIUrl?.url)
+
+    // get token
+    const token = Auth.loggedIn() ? Auth.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const { saveImageData } = await saveImage({
+        variables: { prompt: form.prompt, url: data?.openAiAPIUrl?.url}
+      })
+      console.log('inside try', form.prompt, data?.openAiAPIUrl?.url)
+    } catch (err) {
+      console.error(err)
+    }
+
   };
 
   const handleChange = (event) => {
