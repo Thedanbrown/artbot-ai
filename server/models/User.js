@@ -34,9 +34,19 @@ const userSchema = new Schema(
       type: String,
       // required: true,
       match: [
-        /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/,
-        "You must be 18 or older to sign up",
+        /^((0[1-9])|(1[0-2]))\/((0[1-9])|([1-2][0-9])|(3[0-1]))\/([1-2]\d{3})$/,
+        "Please enter a valid date in the format MM/DD/YYYY",
       ],
+      validate: {
+        validator: function (dob) {
+          const birthdate = new Date(dob);
+          const ageDiffMs = Date.now() - birthdate.getTime();
+          const ageDate = new Date(ageDiffMs);
+          const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+          return age >= 18;
+        },
+        message: "You must be 18 or older to sign up",
+      },
     },
     orders: [Order.schema],
     images: [
