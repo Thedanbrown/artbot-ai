@@ -3,25 +3,28 @@ import { Loader, ImageCard, FormField, Carousel } from "../components";
 import { getRandomPrompt } from "../utils";
 import Auth from "../utils/auth";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { QUERY_OPEN_AI_API } from "../utils/queries";
+import { QUERY_OPEN_AI_API, QUERY_CLOUDINARY_URL } from "../utils/queries";
 import { SAVE_IMAGE } from "../utils/mutations";
-
-
-
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [form, setForm] = useState({ name: "", prompt: "", photo: "" });
   const [generatingImg, setGeneratingImg] = useState(false);
-  const [callOpenAiApi, { error: callApiErr, data, loading: isApiLoading }] = useLazyQuery(QUERY_OPEN_AI_API, {
-    fetchPolicy: 'network-only'
-  });
-  const [saveImage, {error: saveImageErr, data: saveImageData}] = useMutation(SAVE_IMAGE);
+  const [callOpenAiApi, { error: callApiErr, data, loading: isApiLoading }] =
+    useLazyQuery(QUERY_OPEN_AI_API, {
+      fetchPolicy: "network-only",
+    });
+  const [
+    getCloudinaryUrl,
+    { error: cloudinaryErr, data: cloudinaryData, loading: cloudinaryLoading },
+  ] = useLazyQuery(QUERY_CLOUDINARY_URL);
+  const [saveImage, { error: saveImageErr, data: saveImageData }] =
+    useMutation(SAVE_IMAGE);
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("You clicked save.");
-    console.log('save btn', form.prompt, data?.openAiAPIUrl?.url)
+    console.log("save btn", form.prompt, data?.openAiB64Photo);
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -31,14 +34,16 @@ const Profile = () => {
     }
 
     try {
-      const { saveImageData } = await saveImage({
-        variables: { prompt: form.prompt, url: data?.openAiAPIUrl?.url}
+      getCloudinaryUrl({
+        variables: {photoB64: data?.openAiB64Photo?.photoB64}
       })
-      console.log('inside try', form.prompt, data?.openAiAPIUrl?.url)
+      const { saveImageData } = await saveImage({
+        variables: { prompt: form.prompt, url: cloudinaryData?.cloudinaryUrl?.url },
+      });
+      console.log("inside try", form.prompt, '/n', "INSIDE TRY CLOUDINARY URL",  cloudinaryData?.cloudinaryUrl?.url);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-
   };
 
   const handleChange = (event) => {
@@ -51,19 +56,19 @@ const Profile = () => {
   };
 
   const handleSurpriseMe = () => {
-    const randomPrompt = getRandomPrompt(form.prompt)
-    setForm({...form, prompt: randomPrompt})
+    const randomPrompt = getRandomPrompt(form.prompt);
+    setForm({ ...form, prompt: randomPrompt });
   };
 
   const generateImage = () => {
     // Call Backend Proxy
     // Backend Proxy will return URL
-    console.log('click')
+    console.log("click");
     //setGeneratingImg(true);
-    callOpenAiApi( {
+    callOpenAiApi({
       variables: { prompt: form.prompt },
     });
-  }
+  };
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -109,9 +114,9 @@ const Profile = () => {
           </div>
         </form>
         <div className="relative bg-gray-50 border border-gray-300 text-black text-sm rounded-lg focus:ring-[#4392f1]-500 focus:border-[#4392f1]-500 w-64 p-3 h-64 flex justify-center items-center">
-          {data?.openAiAPIUrl?.url ? (
+          {data?.openAiB64Photo.photoB64 ? (
             <img
-              src={data?.openAiAPIUrl?.url}
+              src={`data:image/jpeg;base64,${data?.openAiB64Photo.photoB64}`}
               alt={form.prompt}
               className="w-full h-full object-contain"
             />

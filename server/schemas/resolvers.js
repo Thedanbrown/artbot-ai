@@ -4,14 +4,19 @@ const { signToken } = require("../utils/auth");
 const stripe = require("stripe")(
   "pk_test_51MZlnuFf744gHokpXhLvKw4lfR9IxjoyNOwj9DGOC76lpxKEuOnYG4U8Mp2GHqd35IBPX0ZPyuqCuQez39STMxMF004EucV16s"
 );
-const { generateImage } = require("../utils/API");
+const { generateImage, generateUrl } = require("../utils/API");
 
 const resolvers = {
   Query: {
-    openAiAPIUrl: async (parent, { prompt }) => {
-      const url = await generateImage(prompt);
+    openAiB64Photo: async (parent, { prompt }) => {
+      const photoB64 = await generateImage(prompt);
+      return { photoB64 };
+    },
+    cloudinaryUrl: async (parent, { photoB64 }) => {
+      const url = await generateUrl(photoB64);
       return { url };
     },
+
     images: async (parent, { userEmail }) => {
       const params = userEmail ? { userEmail } : {};
       return Image.find(params).sort({ createdAt: -1 });
@@ -135,6 +140,7 @@ const resolvers = {
 
       if (context.user) {
         console.log("THIS IS USER", context.user);
+
         const image = await Image.create({ prompt, url });
 
         await User.findOneAndUpdate(

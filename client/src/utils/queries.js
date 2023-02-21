@@ -1,13 +1,19 @@
 import { gql } from "@apollo/client";
 
 export const QUERY_OPEN_AI_API = gql`
-  query getOpenApiUrl($prompt: String!) {
-    openAiAPIUrl(prompt: $prompt) {
-      url
+  query getOpenAiB64Photo($prompt: String!) {
+    openAiB64Photo(prompt: $prompt) {
+      photoB64
     }
   }
 `;
-
+export const QUERY_CLOUDINARY_URL = gql`
+query getCloudinaryUrl($photoB64: String!) {
+  cloudinaryUrl(photoB64: $photoB64) {
+    url
+  }
+}
+`;
 export const QUERY_SINGLE_IMAGE = gql`
   query getSingleImage($imageId: ID!) {
     image(imageId: $imageId) {
