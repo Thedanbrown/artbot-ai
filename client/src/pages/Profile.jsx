@@ -74,7 +74,7 @@ const Profile = () => {
           community
         </p>
       </div>
-      <div className="flex flex-col justify-around align-center px-8 py-8 sm:flex-row">
+      <div className="flex flex-col justify-center align-center px-8 py-8 sm:flex-row sm:justify-around">
         <form className="mt-16 max-w-3xl" onSubmit={handleSubmit}>
           <div className="flex flex-col gap-5">
             <FormField

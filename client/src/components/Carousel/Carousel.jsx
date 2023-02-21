@@ -37,14 +37,6 @@ const Carousel = () => {
                 delay: 3000,
                 disableOnInteraction: false
             }}
-            // effect="coverflow"
-            // coverflowEffect={{
-            //     rotate: 20,
-            //     stretch: 50,
-            //     depth: 200,
-            //     modifier: 1,
-            //     slideShadows: true
-            // }}
         >
             <div className="swiper-button-next" />
             <div className="swiper-button-prev" />
