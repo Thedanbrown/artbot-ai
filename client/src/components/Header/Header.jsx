@@ -1,7 +1,19 @@
+import { useQuery } from '@apollo/client';
 import React from 'react'
 import { Link } from 'react-router-dom'
+import auth from '../../utils/auth';
+import { QUERY_ME } from '../../utils/queries';
+
 
 const Header = () => {
+    const logout = (event) => {
+        event.preventDefault();
+        auth.logout();
+    };
+    // const { loading, data } = useQuery(QUERY_ME);
+    // const userData = data?.me || [];
+    // console.log(userData)
+    // console.log(data)
     return (
         <header className='w-full flex items-center justify-between bg-transparent backdrop-blur-sm sm:px-8 px-2 py-2 sticky top-0 z-50'>
             <div className='flex'>
@@ -11,22 +23,31 @@ const Header = () => {
                 
             </div>
             <div className='flex'>
-            <p className='flex align-center justify-center text-[#4392f1]'>Welcome USERNAME</p>
+            {auth.loggedIn()
+            ? <p className='flex align-center justify-center text-[#4392f1]'>Welcome</p>
+            : <></>
+            }
+            
             </div>
             <div className='flex gap-1'>
-                {/* need to add is loggedin functionality to do conditional rendering in header */}
-                {/* {isLoggedIn 
-                ?   <Link to='/profile' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                {auth.loggedIn()
+                ?  <> 
+                    <Link to='/profile' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
                         Profile
                     </Link>
-                    <Link to='/' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                    <Link to='/update' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                        update Info
+                    </Link>
+                    <Link to='/' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md' onClick={logout}>
                         Signout
                     </Link>
+                    </>
+                    
                 : <Link to='/login-signup' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
                 Login/Signup
             </Link>
-                } */}
-                <Link to='/login-signup' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
+                }
+                {/* <Link to='/login-signup' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
                     Login/Signup
                 </Link>
                 
@@ -41,7 +62,7 @@ const Header = () => {
                     </Link>
                     <Link to='/update' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
                         update Info
-                    </Link>
+                    </Link> */}
             </div>
             
         </header>
