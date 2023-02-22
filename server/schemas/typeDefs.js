@@ -33,7 +33,10 @@ const typeDefs = gql`
     user: User
   }
 
-  type OpenAiAPIUrl {
+  type openAiB64Photo {
+    photoB64: String
+  }
+  type cloudinaryUrl {
     url: String
   }
 
@@ -43,7 +46,8 @@ const typeDefs = gql`
     user: User
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
-    openAiAPIUrl(prompt: String!): OpenAiAPIUrl
+    openAiB64Photo(prompt: String!): openAiB64Photo
+    cloudinaryUrl(photoB64: String!): cloudinaryUrl
     me: User
   }
 
@@ -66,6 +70,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     saveImage(prompt: String!, url: String!): Image
     removeImage(imageId: ID!): Image
+    
   }
 `;
 
