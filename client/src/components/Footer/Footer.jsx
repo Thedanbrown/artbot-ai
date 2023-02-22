@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="flex justify-center items-center py-4 flex-col">
       <div className="flex items-center mb-4">
         <p className="text-lg mr-4">
-          Powered by <a href="https://openai.com/dall-e-2/">Open AI</a>
+          Powered by <a href="https://openai.com/dall-e-2/" target="_blank">Open AI</a>
         </p>
         <a href="https://github.com/Thedanbrown/artbot-ai" target="_blank">
           <i className="fab fa-github h-full w-full"></i>
