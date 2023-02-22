@@ -11,12 +11,13 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: authMiddleware,
+  uploads: false,
+  bodyParserConfig: { limit: '50mb' },
+  context: ({ req, res }) => ({ req, res })
 });
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-// app.use(express.bodyParser({limit: '50mb'}))
 // Serve up static assets
 // app.use('/images', express.static(path.join(__dirname, '../client/images')));
 
@@ -33,7 +34,6 @@ app.get('/', (req, res) => {
 const startApolloServer = async (typeDefs, resolvers) => {
   await server.start();
   server.applyMiddleware({ app });
-  // bodyParser.json({limit: '50mb'});
   
   db.once('open', () => {
     app.listen(PORT, () => {
