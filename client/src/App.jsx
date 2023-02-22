@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { Checkout, Home, LoginSignup, Profile, UpdateInfo } from "./pages";
 import { Header } from "./components";
+import { Footer } from "./components"
 import {
   ApolloClient,
   InMemoryCache,
@@ -48,6 +49,7 @@ const App = () => {
             <Route path="/checkout" element={<Checkout />} />
           </Routes>
         </main>
+        <Footer />
       </BrowserRouter>
     </ApolloProvider>
   );
