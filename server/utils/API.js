@@ -15,7 +15,7 @@ const generateImage = async (prompt) => {
     const aiResponse = await openai.createImage({
       prompt,
       n: 1,
-      size: "512x512",
+      size: "256x256",
       response_format: "b64_json",
     });
     console.log(aiResponse.data);
@@ -36,8 +36,8 @@ const generateUrl = async (photoB64) => {
     api_secret: process.env.CLOUDINARY_SECRET,
   });
   const photoUrl = await cloudinary.uploader.upload(photoB64);
-  console.log('PHOTO-URL', photoUrl)
-  return photoUrl;
+  console.log('PHOTO-URL', photoUrl.url)
+  return photoUrl.url;
 }
 
 module.exports = {
