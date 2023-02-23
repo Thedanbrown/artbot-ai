@@ -11,8 +11,8 @@ const app = express();
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  uploads: false,
-  context: ({ req, res }) => ({ req, res }),
+  // uploads: false,
+  context: authMiddleware,
 });
 
 // app.use(express.json());

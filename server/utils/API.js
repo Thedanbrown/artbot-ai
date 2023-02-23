@@ -18,7 +18,7 @@ const generateImage = async (prompt) => {
       size: "256x256",
       response_format: "b64_json",
     });
-    console.log(aiResponse.data);
+    // console.log(aiResponse.data);
     const photoB64 = aiResponse.data.data[0].b64_json;
 
     return photoB64;
