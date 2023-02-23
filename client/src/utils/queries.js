@@ -27,15 +27,16 @@ export const QUERY_SINGLE_IMAGE = gql`
 `;
 
 export const QUERY_IMAGES = gql`
-query getImages($userEmail: String!) {
-    images(userEmail: $userEmail) {
-      _id
-      createdAt
-      prompt
-      price
-      url
-    }
-  }`;
+query getImages {
+  images {
+    _id
+    url
+    prompt
+    createdAt
+    price
+  }
+}
+`;
 
 
 export const QUERY_ME = gql`
@@ -84,3 +85,4 @@ export const QUERY_CHECKOUT = gql`
     }
   }
 `;
+
