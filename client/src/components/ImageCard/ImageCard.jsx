@@ -1,6 +1,8 @@
 import React from 'react'
 
+
 const ImageCard = () => {
+
   return (
     <div></div>
   //   <div className="rounded-xl group relative shadow-card hover:shadow-cardhover card">
