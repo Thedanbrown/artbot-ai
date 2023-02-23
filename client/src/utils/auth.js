@@ -27,9 +27,10 @@ class AuthService {
     return localStorage.getItem('id_token');
   }
 
-  login(idToken) {
+  login(idToken, firstName) {
     // Saves user token to localStorage
     localStorage.setItem('id_token', idToken);
+    // localStorage.setItem('firstName', firstName);
 
     window.location.assign('/profile');
   }

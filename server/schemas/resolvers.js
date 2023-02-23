@@ -20,7 +20,7 @@ const resolvers = {
 
     images: async (parent, { userEmail }) => {
       const params = userEmail ? { userEmail } : {};
-      return Image.find(params).sort({ createdAt: -1 });
+      return Image.find(params).sort({ createdAt: -1 }.populate("images"));
     },
 
     image: async (parent, { imageId }) => {
@@ -82,7 +82,8 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id })
+        console.log(context.user)
+        return User.findById(context.user._id)
           .populate("orders")
           .populate("images");
       }
@@ -133,7 +134,7 @@ const resolvers = {
       }
 
       const token = signToken(user);
-
+console.log(user);
       return { token, user };
     },
     saveImage: async (parent, { prompt, url }, context) => {
