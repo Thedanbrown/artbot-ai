@@ -37,7 +37,8 @@ const Profile = () => {
       const {data: cloudinaryUrlData, error} = await getCloudinaryUrl({
         variables: {photoB64: `data:image/jpeg;base64,${data?.openAiB64Photo?.photoB64}`}
       })
-      console.log("THIS IS IN THE TRY CLOUDINARY", cloudinaryUrlData.cloudinaryUrl.url)
+      // console.log("THIS IS IN THE TRY CLOUDINARY", cloudinaryUrlData.cloudinaryUrl.url)
+      console.log(token)
       const { saveImageData } = await saveImage({
         variables: { prompt: form.prompt, url: cloudinaryUrlData.cloudinaryUrl.url },
       });
