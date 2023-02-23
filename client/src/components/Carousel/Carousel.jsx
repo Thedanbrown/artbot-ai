@@ -10,17 +10,8 @@ import "swiper/css/navigation";
 
 import SwiperCore, { Navigation, Autoplay, EffectCoverflow } from "swiper";
 
-import image1 from "./image-1.jpg";
-import image2 from "./image-2.jpg";
-import image3 from "./image-3.jpg";
-import image4 from "./image-4.jpg";
-import image5 from "./image-5.jpg";
-import image6 from "./image-6.jpg";
-import image7 from "./image-7.jpg";
-
 SwiperCore.use([Navigation, Autoplay, EffectCoverflow]);
 
-// const slides = [image1, image2, image3, image4, image5, image6, image7];
 
 const Carousel = () => {
   const { data: meData, error: meError } = useQuery(QUERY_ME);
@@ -28,14 +19,6 @@ const Carousel = () => {
 
 const imageUrlArray = meData?.me.images || [];
 console.log("THIS IS IMAGE ARRAY ", imageUrlArray);
-
-// const imageCards = imageUrlArray.map((imageUrlArray) => (
-//   <ImageCard
-//   url={imageUrlArray.url}
-//   prompt={imageUrlArray.prompt}
-//   />
-// ))
-
 
   return (
     <Swiper

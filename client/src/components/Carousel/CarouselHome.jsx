@@ -10,26 +10,21 @@ import "swiper/css/navigation";
 
 import SwiperCore, { Navigation, Autoplay, EffectCoverflow } from "swiper";
 
-import image1 from "./image-1.jpg";
-import image2 from "./image-2.jpg";
-import image3 from "./image-3.jpg";
-import image4 from "./image-4.jpg";
-import image5 from "./image-5.jpg";
-import image6 from "./image-6.jpg";
-import image7 from "./image-7.jpg";
+import image1 from "./image-1.png";
+import image2 from "./image-2.png";
+import image3 from "./image-3.png";
+import image4 from "./image-4.png";
+import image5 from "./image-5.png";
+import image6 from "./image-6.png";
+import image7 from "./image-7.png";
+import image8 from "./image-8.png";
+import image9 from "./image-9.jpg";
 
 SwiperCore.use([Navigation, Autoplay, EffectCoverflow]);
 
-const slides = [image1, image2, image3, image4, image5, image6, image7];
+const slides = [image1, image2, image3, image4, image5, image6, image7, image8, image9];
 
 const Carousel = () => {
-  const { data: meData, error: meError } = useQuery(QUERY_ME);
-  console.log("meData: ", meData);
-
-const imageUrlArray = meData?.me.images || [];
-console.log("THIS IS IMAGE ARRAY ", imageUrlArray);
-
-
   return (
     <Swiper
       spaceBetween={30} // add space between the photos
