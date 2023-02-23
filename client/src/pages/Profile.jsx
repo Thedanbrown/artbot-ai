@@ -32,15 +32,16 @@ const Profile = () => {
     if (!token) {
       return false;
     }
-
+    // var uploadStr = 'data:image/jpeg;base64,' + dataURI;
     try {
-      getCloudinaryUrl({
-        variables: {photoB64: data?.openAiB64Photo?.photoB64}
+      const {data: cloudinaryUrlData, error} = await getCloudinaryUrl({
+        variables: {photoB64: `data:image/jpeg;base64,${data?.openAiB64Photo?.photoB64}`}
       })
+      console.log("THIS IS IN THE TRY CLOUDINARY", cloudinaryUrlData.cloudinaryUrl.url)
       const { saveImageData } = await saveImage({
-        variables: { prompt: form.prompt, url: cloudinaryData?.cloudinaryUrl?.url },
+        variables: { prompt: form.prompt, url: cloudinaryUrlData.cloudinaryUrl.url },
       });
-      console.log("inside try", form.prompt, '/n', "INSIDE TRY CLOUDINARY URL",  cloudinaryData?.cloudinaryUrl?.url);
+      console.log("inside try", form.prompt, '/n', "INSIDE TRY CLOUDINARY URL",  cloudinaryUrlData.cloudinaryUrl.url);
     } catch (err) {
       console.error(err);
     }

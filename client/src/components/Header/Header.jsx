@@ -10,10 +10,11 @@ const Header = () => {
         event.preventDefault();
         auth.logout();
     };
-    // const { loading, data } = useQuery(QUERY_ME);
-    // const userData = data?.me || [];
-    // console.log(userData)
-    // console.log(data)
+    const { loading, data, error } = useQuery(QUERY_ME);
+    const userData = data?.me || [];
+    console.log(userData);
+    console.log("data: ",data);
+    console.log("err: ", error);
     return (
         <header className='w-full flex items-center justify-between bg-transparent backdrop-blur-sm sm:px-8 px-2 py-2 sticky top-0 z-50'>
             <div className='flex'>
@@ -24,7 +25,7 @@ const Header = () => {
             </div>
             <div className='flex'>
             {auth.loggedIn()
-            ? <p className='flex align-center justify-center text-[#4392f1]'>Welcome</p>
+            ? <p className='flex align-center justify-center text-[#4392f1]'>Welcome </p>
             : <></>
             }
             

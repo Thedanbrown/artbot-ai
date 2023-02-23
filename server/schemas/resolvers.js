@@ -13,6 +13,7 @@ const resolvers = {
       return { photoB64 };
     },
     cloudinaryUrl: async (parent, { photoB64 }) => {
+      console.log(photoB64.slice(0,40));
       const url = await generateUrl(photoB64);
       return { url };
     },
