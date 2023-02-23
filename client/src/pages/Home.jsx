@@ -11,7 +11,7 @@ const Home = () => {
                 <p className='mt-2 text-[#279af1] text-[16px]'>Here are some recently created images from the community</p>
             </div>
             <div>
-                <Carousel />
+                {/* <Carousel /> */}
             </div>
             
             

@@ -1,6 +1,6 @@
 import React from "react";
 import "./carousel.css";
-import { ImageCard } from '../index'
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { QUERY_IMAGES, QUERY_ME } from "../../utils/queries";
@@ -20,7 +20,7 @@ import image7 from "./image-7.jpg";
 
 SwiperCore.use([Navigation, Autoplay, EffectCoverflow]);
 
-// const slides = [image1, image2, image3, image4, image5, image6, image7];
+const slides = [image1, image2, image3, image4, image5, image6, image7];
 
 const Carousel = () => {
   const { data: meData, error: meError } = useQuery(QUERY_ME);
@@ -28,13 +28,6 @@ const Carousel = () => {
 
 const imageUrlArray = meData?.me.images || [];
 console.log("THIS IS IMAGE ARRAY ", imageUrlArray);
-
-// const imageCards = imageUrlArray.map((imageUrlArray) => (
-//   <ImageCard
-//   url={imageUrlArray.url}
-//   prompt={imageUrlArray.prompt}
-//   />
-// ))
 
 
   return (
@@ -53,16 +46,11 @@ console.log("THIS IS IMAGE ARRAY ", imageUrlArray);
     >
       <div className="swiper-button-next" />
       <div className="swiper-button-prev" />
-      {imageUrlArray.map((imageInfo) => {
-  return (
-    <SwiperSlide key={imageInfo._id}>
-          <ImageCard
-            url={imageInfo.url}
-            prompt={imageInfo.prompt}
-          />
+      {slides.map((slide) => (
+        <SwiperSlide key={slide}>
+          <img src={slide} alt="" />
         </SwiperSlide>
-  )
-})}
+      ))}
     </Swiper>
   );
 };
