@@ -3,10 +3,12 @@ import { Loader, ImageCard, FormField, Carousel } from "../components";
 import { getRandomPrompt } from "../utils";
 import Auth from "../utils/auth";
 import { useLazyQuery, useMutation } from "@apollo/client";
-import { QUERY_OPEN_AI_API, QUERY_CLOUDINARY_URL } from "../utils/queries";
+import { QUERY_OPEN_AI_API, QUERY_CLOUDINARY_URL, QUERY_IMAGES, QUERY_ME } from "../utils/queries";
 import { SAVE_IMAGE } from "../utils/mutations";
+import { useQuery } from "@apollo/client";
 
 const Profile = () => {
+  const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
   const [form, setForm] = useState({ name: "", prompt: "", photo: "" });
@@ -43,6 +45,7 @@ const Profile = () => {
         variables: { prompt: form.prompt, url: cloudinaryUrlData.cloudinaryUrl.url },
       });
       console.log("inside try", form.prompt, '/n', "INSIDE TRY CLOUDINARY URL",  cloudinaryUrlData.cloudinaryUrl.url);
+      setImages([...images, {url: cloudinaryUrlData.cloudinaryUrl.url }])
     } catch (err) {
       console.error(err);
     }
@@ -71,6 +74,14 @@ const Profile = () => {
       variables: { prompt: form.prompt },
     });
   };
+  const { data: meData, error: meError } = useQuery(QUERY_ME);
+  useEffect(() => {
+    setImages(meData?.me.images || []);
+    console.log("meData: ", meData);
+  }, [meData])
+  
+
+  
 
   return (
     <section className="max-w-7xl mx-auto">
@@ -137,7 +148,7 @@ const Profile = () => {
         </div>
       </div>
       <div>
-        <Carousel />
+        <Carousel imageUrlArray = {images} />
       </div>
     </section>
   );

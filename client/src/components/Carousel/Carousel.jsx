@@ -13,12 +13,8 @@ import SwiperCore, { Navigation, Autoplay, EffectCoverflow } from "swiper";
 SwiperCore.use([Navigation, Autoplay, EffectCoverflow]);
 
 
-const Carousel = () => {
-  const { data: meData, error: meError } = useQuery(QUERY_ME);
-  console.log("meData: ", meData);
-
-const imageUrlArray = meData?.me.images || [];
-console.log("THIS IS IMAGE ARRAY ", imageUrlArray);
+const Carousel = (props) => {
+  
 
   return (
     <Swiper
@@ -36,7 +32,7 @@ console.log("THIS IS IMAGE ARRAY ", imageUrlArray);
     >
       <div className="swiper-button-next" />
       <div className="swiper-button-prev" />
-      {imageUrlArray.map((imageInfo) => {
+      {props.imageUrlArray.map((imageInfo) => {
   return (
     <SwiperSlide key={imageInfo._id}>
           <ImageCard
