@@ -18,9 +18,14 @@ const resolvers = {
       return { url };
     },
 
+<<<<<<< Updated upstream
     images: async (parent, { userEmail }) => {
       const params = userEmail ? { userEmail } : {};
       return Image.find(params).sort({ createdAt: -1 }.populate("images"));
+=======
+    images: async () => {
+      return Image.find().sort({ createdAt: -1 });
+>>>>>>> Stashed changes
     },
 
     image: async (parent, { imageId }) => {
