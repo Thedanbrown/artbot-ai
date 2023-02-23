@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { ImageCard, Carousel } from '../components'
+import { ImageCard, CarouselHome } from '../components'
 import { Link } from 'react-router-dom'
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
                 <p className='mt-2 text-[#279af1] text-[16px]'>Here are some recently created images from the community</p>
             </div>
             <div>
-                <Carousel />
+                <CarouselHome />
             </div>
             
             

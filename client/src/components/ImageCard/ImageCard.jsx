@@ -18,9 +18,6 @@ const ImageCard = (props) => {
         <div className="flex items-center gap-2">
           <p className="text-white text-sm">{props.prompt}</p>
         </div>
-        {/* <button type="button" onClick={() => checkout(_id, photo)} className="outline-none bg-transparent border-none">
-          checkout
-        </button> */}
       </div>
     </div>
   </div>
