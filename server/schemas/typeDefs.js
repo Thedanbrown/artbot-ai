@@ -41,7 +41,7 @@ const typeDefs = gql`
   }
 
   type Query {
-    images: [Image]
+    images(userEmail: String!): [Image]
     image(imageId: ID!): Image
     user: User
     order(_id: ID!): Order
