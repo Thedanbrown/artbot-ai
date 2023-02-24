@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# artbot-ai
+Art generator for small businesses running campaigns / advertisements
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
+1. [Description](#Description)
+2. [User-Stories](#User-Stories)
+3. [Acceptance-Criteria](#Acceptance-Criteria)
+4. [Mockup](#Mockup)
+5. [Deployed Application](#Deployed-Application)
+6. [Questions](#Questions)
 
-## Available Scripts
+# Description
+***
+###### [Back to Table of Contents](#Table-of-Contents)
+The purpose of this group project was to develop a MERN application that showcases the skills that we have developed throughout the bootcamp. Specifically skills surrounding MongoDB, REACT, JWT, and GraphQl. The following is the elevator pitch: Are you tired of scrolling through endless pages of search results to find the perfect image? Look no further than Artbot AI! Our AI-powered image generator allows you to search for anything and generates unique, high-quality images for you to use. Plus, with our secure login and signup feature, you can rest assured that your information and images are safe. And the best part? You can save your favorite images to use again and again. Say goodbye to boring, generic images and hello to ArtBot AI!
 
-In the project directory, you can run:
+## User Stories
+***
+###### [Back to Table of Contents](#Table-of-Contents)
+```
+AS A small business owner
+I WANT a website to help me find the best images to help me market my products and business
+SO THAT my business can get the most traffic
+```
 
-### `npm start`
+## Acceptance Criteria
+***
+###### [Back to Table of Contents](#Table-of-Contents)
+```
+GIVEN an image marketing website
+WHEN I land on the marketing page I see samples of the images that can be generated and information about the website
+THEN I am able to click a button to either login or sign up to use the AI image generator
+WHEN I login or sign up to the application
+THEN I am able to begin using the Artbot-AI generator
+WHEN I view the image generator
+THEN I am able to either enter text for the image I want to be generated or click surprise me to have Artbot AI suggest a prompt
+WHEN I view the Artbot generator
+THEN I am able to also view images that I have previously generated and purchased
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+FUTURE DEVELOPMENT:
+- Updating user information
+- Purchasing images using stripe integration
+```
 
-### `npm test`
+## Mockup
+***
+###### [Back to Table of Contents](#Table-of-Contents)
+The following images show the web application's appearance:
+![ArtbotAI Image 2 - LANDING PAGE](./client/public/screenshot2.png)
+![ArtbotAI Image 3 - LOGIN PAGE](./client/public/screenshot3.png)
+![ArtbotAI Image 1 - PROFILE / AI SEARCH PAGE](./client/public/screenshot1.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Deployed Application
+***
+###### [Back to Table of Contents](#Table-of-Contents)
+https://artbotai.herokuapp.com/
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Credits
+***
+###### [Back to Table of Contents](#Table-of-Contents)
+GT Bootcamp Tutors and TAs
+JavaScript Mastery for inspiration (https://www.youtube.com/watch?v=EyIvuigqDoA)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## License
+***
+###### [Back to Table of Contents](#Table-of-Contents)
+MIT
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+# Contributors
+***
+###### [Back to Table of Contents](#Table-of-Contents)
+Review our GitHub Repos:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+https://github.com/Thedanbrown
+thedanbrown@gmail.com
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+https://github.com/khanhpbui
+pkkhanhbui@gmail.com
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+https://github.com/TylerKandarian 
+tyler.kand2@gmail.com
 
-## Learn More
+https://github.com/jae-as
+janaee.as.wallace@gmail.com
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
