@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './loginSignup.css'
-
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { ADD_USER, LOGIN_USER } from '../../utils/mutations';
 import Auth from '../../utils/auth';
@@ -22,20 +22,21 @@ const LoginSignup = () => {
     });
     const [addUser, { error: addUserErr }] = useMutation(ADD_USER);
     const [login, { error: loginErr }] = useMutation(LOGIN_USER);
+    const navigate = useNavigate();
     const signupHandleInputChange = (event) => {
         const { name, value } = event.target;
     
         setSignupState({
-          ...signupState,
-          [name]: value,
+            ...signupState,
+            [name]: value,
         });
     };
     const loginHandleInputChange = (event) => {
         const { name, value } = event.target;
     
         setLoginState({
-          ...loginState,
-          [name]: value,
+            ...loginState,
+            [name]: value,
         });
     };
 
@@ -50,34 +51,34 @@ const LoginSignup = () => {
         console.log('clicked login', loginState);
         try {
             const { data } = await login({
-              variables: { ...loginState },
+                variables: { ...loginState },
             });
-      
             Auth.login(data.login.token);
+            navigate('/profile');
             console.log('in the try', loginState);
-          } catch (e) {
+            } catch (e) {
             console.error(e);
-          }
-      
+            }
           // clear form values
-          setLoginState({
+        setLoginState({
             email: '',
             password: '',
-          });
+        });
     }
     const handleSignUp = async (event) => {
         event.preventDefault();
         console.log(signupState);
     
         try {
-          const { data } = await addUser({
-            variables: { ...signupState },
-          });
+            const { data } = await addUser({
+                variables: { ...signupState },
+            });
     
-          Auth.login(data.addUser.token);
-          console.log('success')
+            Auth.login(data.addUser.token);
+            navigate('/profile');
+            console.log('success')
         } catch (e) {
-          console.error(e);
+            console.error(e);
         }
     };
     

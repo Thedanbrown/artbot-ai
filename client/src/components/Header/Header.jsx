@@ -1,5 +1,4 @@
 import { useQuery } from '@apollo/client';
-import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import auth from '../../utils/auth';
 import { QUERY_ME } from '../../utils/queries';
@@ -47,22 +46,6 @@ const Header = () => {
                 Login/Signup
             </Link>
                 }
-                {/* <Link to='/login-signup' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
-                    Login/Signup
-                </Link>
-                
-                <Link to='/profile' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
-                    Profile
-                </Link>
-                <Link to='/' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
-                        Signout
-                    </Link>
-                    <Link to='checkout' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
-                        Checkout
-                    </Link>
-                    <Link to='/update' className='font-inter text-sm bg-[#279af1] text-white px-2 py-1 rounded-md'>
-                        update Info
-                    </Link> */}
             </div>
             
         </header>
